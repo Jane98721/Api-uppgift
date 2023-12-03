@@ -35,9 +35,6 @@ app.get("/users", function (req, res) {
     console.log(query);
     let output = " WHERE ";
     for (let key in query) {
-      if (COLUMNS.includes(key)) {
-        output += `${key}="${query[key]}" OR `;
-      }
     }
     if (output.length == 7) {
       return "";
@@ -60,16 +57,6 @@ app.get("/users", function (req, res) {
       }
     });
   });
-
-  con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "jensen2023",
-  });
-
-
-
 
 //POST
 app.use(express.json());
