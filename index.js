@@ -1,4 +1,3 @@
-//De vanliga koden
 const express= require ('express')
 const app = express();
 app.listen(4000);
@@ -19,12 +18,9 @@ con = mysql.createConnection({
 //array
 const COLUMNS = ["id", "username", "password", "name", "email"];
 
-
-//Hämta alla
 app.get("/users", function (req, res) {
     let sql = "SELECT * FROM users";
     let condition = createCondition(req.query);
-    console.log(sql + condition); 
     con.query(sql + condition, function (err, result, fields) {
       if (err) throw err
       res.json(result);
@@ -32,7 +28,6 @@ app.get("/users", function (req, res) {
   });
 
   let createCondition = function (query) {
-    console.log(query);
     let output = " WHERE ";
     for (let key in query) {
     }
@@ -43,11 +38,8 @@ app.get("/users", function (req, res) {
     }
   };
 
-
-// ID
  app.get("/users/:id", function (req, res) {
     let sql = "SELECT * FROM users WHERE id=" + req.params.id;
-    console.log(sql);
     
     con.query(sql, function (err, result, fields) {
       if (result.length > 0) {
@@ -80,11 +72,9 @@ app.post('/users', function(req, res) {
   '${req.body.name}',
   '${req.body.email}');
   SELECT LAST_INSERT_ID();`;
-console.log(sql);
 
 con.query(sql, function (err, result, fields) {
   if (err) throw err;
-  console.log(result);
   let output = {
     id: result[0].insertId,
     username: req.body.username,
