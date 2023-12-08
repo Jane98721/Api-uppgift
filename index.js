@@ -1,19 +1,4 @@
-const express= require ('express')
-const app = express();
-app.listen(4000);
-console.log ('körs på port 4000')
 
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
-
-const mysql = require("mysql"); 
-con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "jensen2023",
-});
 
 //array
 const COLUMNS = ["id", "username", "password", "name", "email"];
